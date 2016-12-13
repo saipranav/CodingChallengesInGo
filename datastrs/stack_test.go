@@ -6,7 +6,7 @@ import (
 )
 
 func TestNew(t *testing.T) {
-	testingStack := New()
+	testingStack := NewStack()
 	fmt.Print(testingStack.String())
 
 	// Output:
@@ -14,7 +14,7 @@ func TestNew(t *testing.T) {
 }
 
 func TestStack_PushIntegers(t *testing.T) {
-	testingStack := New()
+	testingStack := NewStack()
 	testingStack.Push(1)
 	testingStack.Push(2)
 	testingStack.Push(3)
@@ -26,7 +26,7 @@ func TestStack_PushIntegers(t *testing.T) {
 }
 
 func TestStack_PushStrings(t *testing.T) {
-	testingStack := New()
+	testingStack := NewStack()
 	testingStack.Push("a")
 	testingStack.Push("b")
 	testingStack.Push("c")
@@ -38,7 +38,7 @@ func TestStack_PushStrings(t *testing.T) {
 }
 
 func TestStack_Pop(t *testing.T) {
-	testingStack := New()
+	testingStack := NewStack()
 	testingStack.Push("a")
 	testingStack.Push("b")
 	value, error := testingStack.Pop()
@@ -54,7 +54,7 @@ func TestStack_Pop(t *testing.T) {
 }
 
 func TestStack_PopEmptyStack(t *testing.T) {
-	testingStack := New()
+	testingStack := NewStack()
 	_, error := testingStack.Pop()
 	if error != nil {
 		fmt.Println(error)
@@ -67,7 +67,7 @@ func TestStack_PopEmptyStack(t *testing.T) {
 }
 
 func TestStack_PopAndPush(t *testing.T) {
-	testingStack := New()
+	testingStack := NewStack()
 	testingStack.Push("a")
 	testingStack.Push(2)
 	value, error := testingStack.Pop()
@@ -86,7 +86,7 @@ func TestStack_PopAndPush(t *testing.T) {
 }
 
 func TestStack_Peek(t *testing.T) {
-	testingStack := New()
+	testingStack := NewStack()
 	testingStack.Push("a")
 	testingStack.Push(2)
 	value, error := testingStack.Peek()
@@ -102,11 +102,21 @@ func TestStack_Peek(t *testing.T) {
 }
 
 func TestStack_PeekEmptyStack(t *testing.T) {
-	testingStack := New()
+	testingStack := NewStack()
 	_, error := testingStack.Peek()
 	if error != nil {
 		fmt.Println(error)
 	}
+	fmt.Print(testingStack.String())
+
+	// Output:
+	// Stack Underflow while pop operation
+	// Stack Elements : [  ] having top element at 0
+}
+
+func TestStack_Empty(t *testing.T) {
+	testingStack := NewStack()
+	fmt.Print("Is stack empty -> " + fmt.Sprintf("%v\n", testingStack.Empty()))
 	fmt.Print(testingStack.String())
 
 	// Output:

@@ -19,8 +19,8 @@ type Stack struct {
 }
 
 // New function creates new stack
-// Syntax : stack.New()
-func New() *Stack {
+// Syntax : stack.NewStack()
+func NewStack() *Stack {
 	return &Stack{}
 }
 
@@ -65,6 +65,15 @@ func (stack *Stack) Peek() (interface{}, error) {
 	}
 	value := stack.elements[stack.top-1]
 	return value, nil
+}
+
+// Empty checks if the stack is empty
+func (stack *Stack) Empty() bool {
+
+	if stack.top == 0 {
+		return true
+	}
+	return false
 }
 
 // Convert stack to string describing the object
