@@ -10,7 +10,7 @@ func TestNew(t *testing.T) {
 	fmt.Print(testingStack.String())
 
 	// Output:
-	// [] 0
+	// Stack Elements : [  ] having head element at 0
 }
 
 func TestStack_PushIntegers(t *testing.T) {
@@ -18,11 +18,10 @@ func TestStack_PushIntegers(t *testing.T) {
 	testingStack.Push(1)
 	testingStack.Push(2)
 	testingStack.Push(3)
-	testingStack.Push(4, 5, 6, 7, 8)
 	fmt.Print(testingStack.String())
 
 	// Output:
-	// [ 1, 2, 3, 4, 5, 6, 7, 8 ] having top element at 8
+	// [ 1, 2, 3 ] having top element at 8
 }
 
 func TestStack_PushStrings(t *testing.T) {
@@ -30,11 +29,10 @@ func TestStack_PushStrings(t *testing.T) {
 	testingStack.Push("a")
 	testingStack.Push("b")
 	testingStack.Push("c")
-	testingStack.Push("d", "ef", "g")
 	fmt.Print(testingStack.String())
 
 	// Output:
-	// [ a, b, c, d, ef, g ] having top element at 6
+	// [ a, b, c ] having top element at 3
 }
 
 func TestStack_Pop(t *testing.T) {

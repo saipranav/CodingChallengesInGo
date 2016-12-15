@@ -6,41 +6,36 @@ import (
 	"strings"
 )
 
-var ErrUnderflow = errors.New("Stack Underflow while pop operation")
+var ErrStackUflow = errors.New("Stack Underflow while pop operation")
 
 // Stack structure
 type Stack struct {
-
-	// Elements of the stack are stored in array
 	elements []interface{}
-
-	// Stack's top index
-	top int
+	top      int
 }
 
-// New function creates new stack
+// Creates new stack
 // Syntax : stack.NewStack()
 func NewStack() *Stack {
 	return &Stack{}
 }
 
 // Push any number of elements to stack
-func (stack *Stack) Push(values ...interface{}) {
+func (stack *Stack) Push(value interface{}) {
 	lenStackElements := len(stack.elements)
-	lenValues := len(values)
 
 	// If elements of stack does not have sufficient capacity
 	// then increase the capacity by twice
-	if cap(stack.elements) <= lenStackElements+lenValues {
-		newCap := (cap(stack.elements) + lenValues + 1) * 2 // +1 if the capacity is 0
+	if cap(stack.elements) <= lenStackElements+1 {
+		newCap := (cap(stack.elements) + 1) * 2 // +1 if the capacity is 0
 		newElements := make([]interface{}, 0, newCap)
 		newElements = append(newElements, stack.elements...)
 		stack.elements = newElements
 	}
 
 	// Append all values into stack elements
-	stack.elements = append(stack.elements[:stack.top], values...)
-	stack.top = stack.top + lenValues
+	stack.elements = append(stack.elements[:stack.top], value)
+	stack.top = stack.top + 1
 }
 
 // Pop retrieves top element from stack and deletes the element from stack
@@ -48,7 +43,7 @@ func (stack *Stack) Pop() (interface{}, error) {
 
 	// Handle underflow if stack is empty
 	if stack.top == 0 {
-		return nil, ErrUnderflow
+		return nil, ErrStackUflow
 	}
 	value := stack.elements[stack.top-1]
 	stack.elements[stack.top-1] = nil
@@ -61,7 +56,7 @@ func (stack *Stack) Peek() (interface{}, error) {
 
 	// Handle underflow if stack is empty
 	if stack.top == 0 {
-		return nil, ErrUnderflow
+		return nil, ErrStackUflow
 	}
 	value := stack.elements[stack.top-1]
 	return value, nil
